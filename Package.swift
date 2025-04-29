@@ -23,14 +23,8 @@ let package = Package(
             path: "DBDebugToolkit/Common"
         ),
         .target(
-            name: "DBDebugToolkitResources",
-            path: "DBDebugToolkit/Resources",
-            publicHeadersPath: "."
-        ),
-        .target(
             name: "DBDebugToolkitObjC",
             dependencies: [
-                "DBDebugToolkitResources",
                 "DBDebugToolkitCommon"
             ],
             path: "DBDebugToolkit/ObjC",
@@ -40,7 +34,6 @@ let package = Package(
             name: "DBDebugToolkitSwift",
             dependencies: [
                 "DBDebugToolkitObjC",
-                "DBDebugToolkitResources",
             ],
             path: "DBDebugToolkit/Swift"
         )
