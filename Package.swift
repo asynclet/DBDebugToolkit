@@ -1,18 +1,44 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.6
+
 import PackageDescription
 
 let package = Package(
     name: "DBDebugToolkit",
-    platforms: [.iOS(.v10)],
+    platforms: [
+        .iOS(.v13)
+    ],
     products: [
         .library(
             name: "DBDebugToolkit",
-            targets: ["DBDebugToolkit"]),
+            targets: ["DBDebugToolkitSwift"]
+        ),
     ],
     targets: [
         .target(
-            name: "DBDebugToolkit",
-            path: "DBDebugToolkit",
-            publicHeadersPath: "Headers"),
+            name: "DBDebugToolkitCommon",
+            path: "DBDebugToolkit/Common"
+        ),
+        .target(
+            name: "DBDebugToolkitResources",
+            path: "DBDebugToolkit/Resources",
+            publicHeadersPath: "."
+        ),
+        .target(
+            name: "DBDebugToolkitObjC",
+            dependencies: [
+                "DBDebugToolkitResources",
+                "DBDebugToolkitCommon"
+            ],
+            path: "DBDebugToolkit/ObjC",
+            publicHeadersPath: "Headers"
+        ),
+        .target(
+            name: "DBDebugToolkitSwift",
+            dependencies: [
+                "DBDebugToolkitObjC",
+                "DBDebugToolkitResources",
+            ],
+            path: "DBDebugToolkit/Swift"
+        )
     ]
 )
