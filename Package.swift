@@ -10,7 +10,12 @@ let package = Package(
     products: [
         .library(
             name: "DBDebugToolkit",
-            targets: ["DBDebugToolkitSwift"]
+            targets: [
+                "DBDebugToolkitSwift",
+                "DBDebugToolkitObjC",
+                "DBDebugToolkitResources",
+                "DBDebugToolkitCommon"
+            ]
         ),
     ],
     targets: [
